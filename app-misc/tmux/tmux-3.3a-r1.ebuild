@@ -21,13 +21,14 @@ fi
 
 LICENSE="ISC"
 SLOT="0"
-IUSE="debug selinux systemd utempter vim-syntax"
+IUSE="debug selinux systemd utempter sixel vim-syntax"
 
 DEPEND="
 	dev-libs/libevent:=
 	sys-libs/ncurses:=
 	systemd? ( sys-apps/systemd:= )
 	utempter? ( sys-libs/libutempter )
+	sixel? ( media-libs/libsixel )
 	kernel_Darwin? ( dev-libs/libutf8proc:= )
 "
 
@@ -64,6 +65,7 @@ src_configure() {
 		$(use_enable debug)
 		$(use_enable systemd)
 		$(use_enable utempter)
+		$(use_enable sixel)
 
 		# For now, we only expose this for macOS, because
 		# upstream strongly encourage it. I'm not sure it's
